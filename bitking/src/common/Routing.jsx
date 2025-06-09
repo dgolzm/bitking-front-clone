@@ -13,6 +13,9 @@ import Partida from "../game/Partida";
 import Login from "../auth/Login";
 import Signup from "../auth/Signup";
 
+import ProtectedRoute from "../common/ProtectedRoute";
+
+
 function Routing() {
     return (
         <BrowserRouter>
@@ -21,9 +24,10 @@ function Routing() {
                     <Route path="/" element={<Home />} />
                     <Route path="/instrucciones" element={<Instrucciones />} />
                     <Route path="/nosotros" element={<Nosotros />} />
-                    <Route path="/partida" element={<Partida />} />
+                    <Route path="/partida" element={<ProtectedRoute><Partida /></ProtectedRoute>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/registro" element={<Signup />} />
+
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </App>

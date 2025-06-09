@@ -1,0 +1,51 @@
+/* src/assets/styles/pages.css */
+
+.home-page,
+.instructions-page,
+.about-page {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.6); /* fondo semitransparente */
+  border-radius: 12px;
+  color: #d6eaff;
+  font-family: 'Segoe UI', 'Courier New', monospace;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+/* Títulos principales */
+.home-page h1,
+.instructions-page h1,
+.about-page h1 {
+  font-size: 32px;
+  color: #6cd4ff;
+  border-bottom: 2px solid #6cd4ff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Listas */
+.instructions-page ul {
+  list-style-type: "🎯 ";
+  padding-left: 20px;
+  margin-top: 15px;
+}
+
+.instructions-page li {
+  margin-bottom: 10px;
+}
+
+/* Lista de miembros */
+.about-page ul {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.about-page li {
+  margin-bottom: 8px;
+}
+
+.about-page strong {
+  color: #ffffff;
+}
