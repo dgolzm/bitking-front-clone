@@ -9,6 +9,7 @@ import Nosotros from "../info/Nosotros";
 
 import Instrucciones from "../game/Instrucciones";
 import Partida from "../game/Partida";
+import Salas from "../game/Salas";
 
 import Login from "../auth/Login";
 import Signup from "../auth/Signup";
@@ -24,9 +25,10 @@ function Routing() {
                     <Route path="/" element={<Home />} />
                     <Route path="/instrucciones" element={<Instrucciones />} />
                     <Route path="/nosotros" element={<Nosotros />} />
-                    <Route path="/partida" element={<ProtectedRoute><Partida /></ProtectedRoute>} />
+                    <Route path="/salas" element={<ProtectedRoute><Salas /></ProtectedRoute>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/registro" element={<Signup />} />
+                    <Route path="/partida" element={<ProtectedRoute><Partida /></ProtectedRoute>} />
 
                     <Route path="*" element={<NotFound />} />
                 </Routes>

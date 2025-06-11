@@ -1,9 +1,11 @@
-// Crea la funcion Partida vacia y el export por defecto
+import "./Partida.css";
 
 function Partida() {
     return (
-        <div>
-            <h2>Partida</h2>
+        <div className="partida-container">
+            <h1 className="partida-mensaje">
+                AQUI HAY QUE ARMAR EL TABLERO Y LA PARTIDA
+            </h1>
         </div>
     );
 }
