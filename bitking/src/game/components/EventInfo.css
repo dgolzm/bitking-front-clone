@@ -1,0 +1,25 @@
+.event-box {
+  border: 2px solid rgb(95, 89, 57);
+  padding: 10px;
+  width: 180px;
+  background-color: #9e734d;
+  font-family: sans-serif;
+}
+
+.event-icon {
+  font-size: 2em;
+}
+
+.event-name {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.event-turns {
+  color: #333;
+}
+
+.event-desc {
+  font-size: 0.9em;
+  margin-top: 4px;
+}
