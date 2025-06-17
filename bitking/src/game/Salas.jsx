@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./salas.css"; // si usas un archivo de estilos
+import "./Salas.css";
 
 import clase1 from "../assets/clase1.png";
 import clase2 from "../assets/clase2.png";
