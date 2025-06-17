@@ -1,0 +1,42 @@
+/* src/assets/styles/forms.css */
+.form-container {
+  max-width: 500px;
+  margin: 100px auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+input {
+  width: 95%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1c2a3a;
+  color: white;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00bcd4;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  margin-top: 10px;
+}
+
+.success-msg {
+  color: #3cf294;
+  margin-top: 10px;
+}
