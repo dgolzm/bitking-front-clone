@@ -9,6 +9,29 @@ const GLYPHS = {
   },
 };
 
+// Mapeo de nombres desde el backend
+const typeMap = {
+  torre: 'rook',
+  caballo: 'knight',
+  alfil: 'bishop',
+  reina: 'queen',
+  rey: 'king',
+  peon: 'pawn',
+};
+
+const colorMap = {
+  blanco: 'white',
+  negro: 'black',
+};
+
 export default function Piece({ type, color }) {
-  return <span>{GLYPHS[color][type]}</span>;
+  const mappedType = typeMap[type];
+  const mappedColor = colorMap[color];
+
+  if (!mappedType || !mappedColor) {
+    console.warn("Tipo o color inválido:", { type, color });
+    return <span>❓</span>;
+  }
+
+  return <span>{GLYPHS[mappedColor][mappedType]}</span>;
 }

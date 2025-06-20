@@ -1,20 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Square from './Square';
 import Piece from './Piece';
-import useChessBoard from '../../hooks/useChessBoard';
 import './Board.css';
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 export default function Board() {
-  const { pieces, loading } = useChessBoard();
+  const query = useQuery();
+  const gameId = query.get("id");
+
   const [currentPieces, setCurrentPieces] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Esto asegura que se cargue correctamente al recibir las piezas
   useEffect(() => {
-    if (!loading && pieces.length > 0) {
-      setCurrentPieces(pieces);
+    async function fetchPieces() {
+      try {
+        const res = await fetch(`http://localhost:5000/api/games/${gameId}/pieces`);;
+        if (!res.ok) throw new Error("Error al obtener piezas");
+        const data = await res.json();
+
+        // Convertir piezas a formato interno del frontend
+        const parsed = data.map(p => ({
+          id: p.id,
+          type: p.tipo,
+          color: p.color,
+          row: p.fila - 1,
+          col: parseInt(p.columna, 10) - 1
+        }));
+
+        setCurrentPieces(parsed);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al cargar el tablero:", error);
+        setLoading(false);
+      }
     }
-  }, [loading, pieces]);
+
+    if (gameId) {
+      fetchPieces();
+    }
+  }, [gameId]);
 
   if (loading) return <p>Cargando tablero…</p>;
 
@@ -23,22 +52,66 @@ export default function Board() {
     board[p.row][p.col] = p;
   });
 
-  const handleSquareClick = (row, col) => {
+  const handleSquareClick = async (row, col) => {
     const clickedPiece = board[row][col];
 
     if (selected) {
+      const from = { row: selected.row + 1, col: selected.col + 1 };
+      const to = { row: row + 1, col: col + 1 };
+
+      const movingPiece = currentPieces.find(
+        piece => piece.row === selected.row && piece.col === selected.col
+      );
+
+      const capturedPiece = clickedPiece && clickedPiece.color !== movingPiece.color
+        ? clickedPiece
+        : null;
+
+      // Actualiza el tablero local
       const updatedPieces = currentPieces
-      .filter(piece => !(piece.row === row && piece.col === col)) // elimina pieza destino
-      .map(piece => {
-        if (piece.row === selected.row && piece.col === selected.col) {
-          return { ...piece, row, col }; // mueve seleccionada
+        .filter(piece => !(capturedPiece && piece.id === capturedPiece.id))
+        .map(piece => {
+          if (piece.id === movingPiece.id) {
+            return { ...piece, row, col };
+          }
+          return piece;
+        });
+
+      setCurrentPieces(updatedPieces);
+      setSelected(null);
+
+      try {
+      // 1. Eliminar pieza capturada si corresponde
+      if (capturedPiece) {
+        const deleteRes = await fetch(`http://localhost:5000/api/pieces/${capturedPiece.id}/delete`, {
+          method: "DELETE"
+        });
+        if (!deleteRes.ok) {
+          console.error("Error al eliminar pieza capturada");
         }
-        return piece;
+      }
+
+      // 2. Enviar movimiento
+      const moveRes = await fetch(`http://localhost:5000/api/games/${gameId}/move`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          pieceID: movingPiece.id,
+          fila: to.row,
+          columna: to.col.toString()
+        }),
       });
 
-    setCurrentPieces(updatedPieces);
+      if (!moveRes.ok) {
+        console.error("Error al registrar el movimiento en el backend");
+      }
+    } catch (error) {
+      console.error("Error de red durante movimiento o captura:", error);
+    }
 
-      setSelected(null);
+
     } else if (clickedPiece) {
       setSelected({ row, col });
     }
