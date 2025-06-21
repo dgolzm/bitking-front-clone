@@ -5,7 +5,7 @@ import './ClassBattle.css';
 import alienImg from '../../assets/alien.png';
 import robotImg from '../../assets/robot.png';
 import humanImg from '../../assets/humano.png';
-import zombieImg from '../../assets/zombie.png'; // <- asumiendo que usarás la correcta
+import zombieImg from '../../assets/zombie.png'; 
 
 const classImages = {
   alien: alienImg,

@@ -9,7 +9,6 @@ const GLYPHS = {
   },
 };
 
-// Mapeo de nombres desde el backend
 const typeMap = {
   torre: 'rook',
   caballo: 'knight',

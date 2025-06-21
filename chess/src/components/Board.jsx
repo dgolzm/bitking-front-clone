@@ -9,7 +9,6 @@ export default function Board() {
   const [currentPieces, setCurrentPieces] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  // Esto asegura que se cargue correctamente al recibir las piezas
   useEffect(() => {
     if (!loading && pieces.length > 0) {
       setCurrentPieces(pieces);
@@ -28,10 +27,10 @@ export default function Board() {
 
     if (selected) {
       const updatedPieces = currentPieces
-      .filter(piece => !(piece.row === row && piece.col === col)) // elimina pieza destino
+      .filter(piece => !(piece.row === row && piece.col === col)) 
       .map(piece => {
         if (piece.row === selected.row && piece.col === selected.col) {
-          return { ...piece, row, col }; // mueve seleccionada
+          return { ...piece, row, col };
         }
         return piece;
       });

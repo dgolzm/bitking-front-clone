@@ -23,7 +23,6 @@ export default function Board() {
         if (!res.ok) throw new Error("Error al obtener piezas");
         const data = await res.json();
 
-        // Convertir piezas a formato interno del frontend
         const parsed = data.map(p => ({
           id: p.id,
           type: p.tipo,
@@ -67,7 +66,6 @@ export default function Board() {
         ? clickedPiece
         : null;
 
-      // Actualiza el tablero local
       const updatedPieces = currentPieces
         .filter(piece => !(capturedPiece && piece.id === capturedPiece.id))
         .map(piece => {
@@ -81,7 +79,6 @@ export default function Board() {
       setSelected(null);
 
       try {
-      // 1. Eliminar pieza capturada si corresponde
       if (capturedPiece) {
         const deleteRes = await fetch(`http://localhost:5000/api/pieces/${capturedPiece.id}/delete`, {
           method: "DELETE"
@@ -91,7 +88,6 @@ export default function Board() {
         }
       }
 
-      // 2. Enviar movimiento
       const moveRes = await fetch(`http://localhost:5000/api/games/${gameId}/move`, {
         method: "PATCH",
         headers: {

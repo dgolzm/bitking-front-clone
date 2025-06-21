@@ -7,7 +7,7 @@
   gap: 80px;
   padding: 100px 20px 40px;
   box-sizing: border-box;
-  height: 520px; /* Controla el alto aquí */
+  height: 520px; 
 }
 
 .lista-partidas {
@@ -15,9 +15,9 @@
   padding: 20px;
   border-radius: 20px;
   width: 400px;
-  /* Ajusta el alto para igualar al selector de clase + crear partida */
+
   min-height: 520px;
-  height: 520px; /* Fija el alto */
+  height: 520px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@
 
 .scroll-area {
   overflow-y: auto;
-  max-height: 400px; /* <-- Aumenta este valor */
+  max-height: 400px;
   width: 100%;
   margin: 10px 0;
   padding-right: 10px;
@@ -85,7 +85,7 @@
   border-radius: 20px;
   padding: 20px;
   width: 100%;
-  min-height: 220px; /* Reduce si quieres menos alto */
+  min-height: 220px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,7 +95,7 @@
 .clases-grid {
   display: flex;
   gap: 15px;
-  margin-bottom: 10px; /* Reduce este valor si quieres menos espacio */
+  margin-bottom: 10px; 
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -124,7 +124,7 @@
 
 
 .crear-partida {
-  margin-top: 0; /* Elimina el margin-top, usa gap en el contenedor */
+  margin-top: 0;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 15px;
@@ -140,19 +140,19 @@
 .modulo-derecha {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Menos espacio entre módulos */
+  gap: 16px;
   width: 400px;
   min-height: 520px;
-  height: 520px; /* Igual que .lista-partidas */
+  height: 520px;
   justify-content: flex-start;
 }
 
 .selector-clase,
 .crear-partida {
   width: 100%;
-  box-sizing: border-box; /* Asegura que el padding no aumente el ancho */
-  margin: 0;              /* Elimina márgenes laterales */
-  align-self: stretch;    /* Fuerza a ocupar todo el ancho del padre */
+  box-sizing: border-box; 
+  margin: 0;           
+  align-self: stretch;   
 }
 
 .clase-descripcion {
