@@ -80,7 +80,7 @@ export default function Board() {
 
       try {
       if (capturedPiece) {
-        const deleteRes = await fetch(`http://localhost:5000/api/pieces/${capturedPiece.id}/delete`, {
+        const deleteRes = await fetch(`http://localhost:5000/api/games/${capturedPiece.id}/delete`, {
           method: "DELETE"
         });
         if (!deleteRes.ok) {
