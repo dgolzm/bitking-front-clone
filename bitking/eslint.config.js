@@ -1,10 +1,14 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import airbnbBase from 'eslint-config-airbnb-base';
+import importPlugin from 'eslint-plugin-import';
 
+/** @type {import("eslint").Linter.Config[]} */
 export default [
   { ignores: ['dist'] },
+
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -17,11 +21,13 @@ export default [
       },
     },
     plugins: {
+      import: importPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     rules: {
       ...js.configs.recommended.rules,
+      ...airbnbBase.rules,
       ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react-refresh/only-export-components': [
@@ -30,4 +36,4 @@ export default [
       ],
     },
   },
-]
+];
