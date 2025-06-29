@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Salas.css";
 
-import clase1 from "../assets/clase1.png";
-import clase2 from "../assets/clase2.png";
-import clase3 from "../assets/clase3.png";
-import clase4 from "../assets/clase4.png";
+import clase1 from "../assets/humano.png";
+import clase2 from "../assets/alien.png";
+import clase3 from "../assets/zombie.png";
+import clase4 from "../assets/robot.png";
 
 const CLASES = [
   { id: 1, nombre: "Clase Humano", imagen: clase1, descripcion: "Versátil y equilibrado. Sin ventajas ni desventajas." },
@@ -23,7 +23,7 @@ function Salas() {
   const fetchPartidas = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/games` // Obtener todas las partidas
+        `${import.meta.env.VITE_BACKEND_URL}/api/games` 
       );
       const filtradas = response.data.filter(
         (p) => p.estado_partida === "Esperando"
