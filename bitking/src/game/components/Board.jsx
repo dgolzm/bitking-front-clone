@@ -19,7 +19,7 @@ export default function Board() {
   useEffect(() => {
     async function fetchPieces() {
       try {
-        const res = await fetch(`http://localhost:5000/api/games/${gameId}/pieces`);;
+        const res = await fetch(`https://reactive-back-s2.onrender.com/api/games/${gameId}/pieces`);;
         if (!res.ok) throw new Error("Error al obtener piezas");
         const data = await res.json();
 
@@ -80,7 +80,7 @@ export default function Board() {
 
       try {
       if (capturedPiece) {
-        const deleteRes = await fetch(`http://localhost:5000/api/games/${capturedPiece.id}/delete`, {
+        const deleteRes = await fetch(`https://reactive-back-s2.onrender.com/api/games/${capturedPiece.id}/delete`, {
           method: "DELETE"
         });
         if (!deleteRes.ok) {
@@ -88,7 +88,7 @@ export default function Board() {
         }
       }
 
-      const moveRes = await fetch(`http://localhost:5000/api/games/${gameId}/move`, {
+      const moveRes = await fetch(`https://reactive-back-s2.onrender.com/api/games/${gameId}/move`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
